@@ -1,5 +1,6 @@
 import streamlit as st
 import joblib
+import tempfile
 from keras.models import load_model
 import numpy as np
 import tensorflow as tf
@@ -115,29 +116,26 @@ def predict_image(image_path, model):
 # -----------------------
 # Streamlit App
 # -----------------------
+
 def main():
     st.set_page_config(page_title="Real or Fake Detector", layout="centered")
-    st.title("🧠 Real or Fake? Multimodal Detector")
+    st.title("📰 Real or Fake News?")
 
     # News input
-    news_text = st.text_area("📰 Enter News Text")
+    news_text = st.text_area("Enter News Text")
 
-    # Image input (Local path browser)
-    st.markdown("### 📂 Choose Image From Local Folder")
-    folder_path = st.text_input("Enter image folder path", value=os.getcwd())
-    image_path = None
-
-    if os.path.isdir(folder_path):
-        image_files = glob.glob(os.path.join(folder_path, "*.jp*g"))
-        if image_files:
-            image_path = st.selectbox("Select an image:", image_files)
-        else:
-            st.warning("No JPG/JPEG images found in this folder.")
+    # Image input using file uploader
+    uploaded_image = st.file_uploader("Upload an Image", type=["jpg", "jpeg", "png"])
 
     if st.button("🔍 Predict"):
-        if not news_text or not image_path:
-            st.warning("Please provide both news text and select a valid image.")
+        if not news_text or not uploaded_image:
+            st.warning("Please provide both news text and upload a valid image.")
             return
+
+        # Save uploaded image temporarily
+        with tempfile.NamedTemporaryFile(delete=False, suffix=".jpg") as tmp_file:
+            tmp_file.write(uploaded_image.read())
+            image_path = tmp_file.name
 
         # Load models
         text_model = load_text_model()
@@ -149,14 +147,14 @@ def main():
         img_label, img_prob = predict_image(image_path, image_model)
 
         # Display Results
-        st.subheader("📰 News Prediction")
+        st.subheader("News Prediction")
         st.write(f"Prediction: **{news_label}** ({news_prob:.2%} fake probability)")
 
-        st.subheader("🖼️ Image Prediction")
+        st.subheader("Image Prediction")
         if img_label == "Error":
             st.error("Face not detected or image could not be processed.")
         else:
             st.write(f"Prediction: **{img_label}** ({img_prob:.2%} probability)")
-            st.image(image_path, caption="Selected Image", use_container_width=True)
+
 if __name__ == "__main__":
     main()
