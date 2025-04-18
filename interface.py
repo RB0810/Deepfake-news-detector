@@ -119,6 +119,7 @@ def predict_image(image_path, model):
 
 def main():
     st.set_page_config(page_title="Real or Fake Detector", layout="centered")
+    st.image("cover.jpg", use_container_width=True)
     st.title("📰 Real or Fake News?")
 
     # News input
