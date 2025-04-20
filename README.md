@@ -9,10 +9,10 @@
 <br> 
 
 # Dataset 
-<li> Text Model - Dataset is included in the zip file</li>
+<li> Text Model - Dataset is included in the repository (Fake.csv and True.csv) </li>
 <li> Image Model - Dataset is downloaded from kaggle in the first few cells of Image Model. <br> You can also download it from the link here:  https://www.kaggle.com/datasets/manjilkarki/deepfake-and-real-images</li>
 
 # Model
 <li> tfidf_vectorizer.pkl - vectorizer for preprocessing text media to be loaded in streamlit</li>
 <li> fake_news_model.pkl - text model to be loaded in streamlit</li>
-<li> img_model.keras - image model to be loaded in streamlit</li>
+<li> img_model.keras - Will need to download this file from this drive link and save to the root folder to be loaded in streamlit - https://drive.google.com/file/d/1jZ5VzTpt13qdeuf08PSgCf9B92KlQLxX/view?usp=sharing </li>
