@@ -13,6 +13,7 @@
 <li> Image Model - Dataset is downloaded from kaggle in the first few cells of Image Model. <br> You can also download it from the link here:  https://www.kaggle.com/datasets/manjilkarki/deepfake-and-real-images</li>
 
 # Model
-<li> tfidf_vectorizer.pkl - vectorizer for preprocessing text media to be loaded in streamlit</li>
-<li> fake_news_model.pkl - text model to be loaded in streamlit</li>
-<li> img_model.keras - image model to be loaded in streamlit</li>
+- `img_model.keras` — Pre-trained CNN model for classifying real vs. deepfake human images.
+- `fake_news_model.pkl` — Logistic Regression model for text-based fake news detection.
+- `tfidf_vectorizer.pkl` — TF-IDF vectorizer for transforming news articles before classification.
+
