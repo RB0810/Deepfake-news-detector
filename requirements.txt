@@ -1,2 +1,4 @@
 joblib
 keras
+tensorflow
+cv2
