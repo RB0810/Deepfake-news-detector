@@ -2,4 +2,7 @@ joblib
 keras
 tensorflow
 tensorflow_hub
-opencv-python
+streamlit
+numpy
+pandas
+opencv-python-headless
