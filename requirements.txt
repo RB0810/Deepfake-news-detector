@@ -2,3 +2,4 @@ joblib
 keras
 tensorflow
 tensorflow_hub
+cv2
